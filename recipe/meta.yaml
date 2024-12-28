@@ -10,7 +10,7 @@ source:
   sha256: 41765ea05224c035e146c89d60ef23d0d2c043ccc79e380cbeae60143547b1dc
 
 build:
-  number: 0
+  number: 1
   script: "{{ PYTHON }} -m pip install . -vv"
   noarch: python
 
@@ -21,16 +21,18 @@ requirements:
     - boto3 >=1.7.42
     - botocore >=1.10.42
     - docutils >=0.14
-    - python >=3.5
+    - python {{ python_min }}
     - pip
   run:
     - pip
     - boto3 >=1.7.42
     - botocore >=1.10.42
     - docutils >=0.14
-    - python >=3.5
+    - python >={{ python_min }}
 
 test:
+  requires:
+    - python {{ python_min }}
   imports:
     - aws_lambda
     - aws_lambda.examples
